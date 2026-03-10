@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AKSHAY MEDICAL - Miraj</title>
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --primary-green: #2ecc71;
+            --primary-blue: #3498db;
+            --dark-blue: #2c3e50;
+            --light-bg: #f4f9f4;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: var(--light-bg);
+        }
+
+        /* Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-green);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span { color: var(--primary-blue); }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-blue);
+            margin-left: 20px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--primary-green); }
+
+        .cta-btn {
+            background-color: var(--primary-green);
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 25px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1631549916768-4119b2e5f926?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .hero h1 { font-size: 3rem; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; margin-bottom: 20px; }
+        
+        .hero-address {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-btn {
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+
+        .hero-btn:hover { transform: scale(1.05); }
+
+        .btn-call {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+        }
+
+        /* Sections General */
+        section { padding: 60px 20px; max-width: 1200px; margin: 0 auto; }
+        h2 { text-align: center; color: var(--dark-blue); margin-bottom: 40px; font-size: 2rem; }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: center;
+        }
+        .about-text { flex: 1; min-width: 300px; }
+        .about-img { flex: 1; min-width: 300px; }
+        .about-img img { width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
+        /* Categories / Products */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        .product-card:hover { transform: translateY(-5px); }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-info { padding: 15px; }
+        .product-info h3 { margin: 10px 0; color: var(--dark-blue); }
+        .price { color: var(--primary-green); font-weight: bold; font-size: 1.1rem; }
+        .order-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background-color: var(--primary-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        /* Order Section */
+        .order-section {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        /* Contact & Map */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .contact-info, .map-container { flex: 1; min-width: 300px; }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        .contact-item span { margin-right: 15px; font-size: 1.5rem; }
+
+        iframe { width: 100%; height: 300px; border: 0; border-radius: 10px; }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-blue);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            nav { flex-direction: column; gap: 15px; }
+            .nav-links { display: flex; flex-direction: column; gap: 10px; text-align: center; }
+            .nav-links a { margin: 0; }
+            .hero-buttons { flex-direction: column; }
+            .hero-btn { width: 100%; box-sizing: border-box; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">🏥 AKSHAY <span>MEDICAL</span></div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#products">Products</a>
+                <a href="#order">Order Now</a>
+                <a href="#contact" class="cta-btn">Contact Us</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div>
+            <h1>AKSHAY MEDICAL</h1>
+            <p>Your Trusted Pharmacy in Miraj, Maharashtra</p>
+            <div class="hero-address">
+                📍 Gandhi Chowk, Mangalwar Peth, Miraj, Maharastra 416410
+            </div>
+            <div class="hero-buttons">
+                <a href="tel:+91888850909" class="hero-btn btn-call">📞 Call Now</a>
+                <a href="https://wa.me/91888850909?text=Hello,%20I%20would%20like%20to%20order%20medicines." class="hero-btn btn-whatsapp">💬 WhatsApp Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Our Store</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Welcome to <strong>AKSHAY MEDICAL</strong>. Located in the heart of Miraj, we are dedicated to providing our community with high-quality healthcare products and expert advice.</p>
+                <p>Whether you need prescription medicines, daily vitamins, or skincare essentials, our shelves are stocked with trusted brands. We believe in transparency, affordability, and fast service.</p>
+                <ul>
+                    <li>✅ 100% Genuine Medicines</li>
+                    <li>✅ Expert Pharmacists</li>
+                    <li>✅ Fast Service</li>
+                </ul>
+            </div>
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Pharmacy Shelves">
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products">
+        <h2>Our Categories</h2>
+        <div class="category-grid">
+           
+
+
+
+    <!-- Product 5 -->
+<div class="product-card">
+    <img src="Dulcoflex.jpg" alt="Dulcoflex Tablets">
+    <div class="product-info">
+        <h3>Dulcoflex</h3>
+        <p>Bisacodyl tablets used for relief from constipation.</p>
+        <div class="price">Ask Price</div>
+        <a href="https://wa.me/91888850909?text=I%20want%20to%20order%20Dulcoflex%20tablets" class="order-btn">Order Now</a>
+    </div>
+</div>
+
+    <!-- Product 6 -->
+<div class="product-card">
+    <img src="SHELCAL-HD.jpg" alt="Shelcal HD">
+    <div class="product-info">
+        <h3>Shelcal-HD</h3>
+        <p>Calcium and Vitamin D3 supplement for bone health.</p>
+        <div class="price">Ask Price</div>
+        <a href="https://wa.me/91888850909?text=I%20want%20to%20order%20Shelcal%20HD" class="order-btn">Order Now</a>
+    </div>
+</div>
+   <!-- Product 7 -->
+<div class="product-card">
+    <img src="SINAREST.jpg" alt="Sinarest">
+    <div class="product-info">
+        <h3>Sinarest</h3>
+        <p>Anti-cold medicine for fever, cold, and congestion.</p>
+        <div class="price">Ask Price</div>
+        <a href="https://wa.me/91888850909?text=I%20want%20to%20order%20Sinarest%20tablets" class="order-btn">Order Now</a>
+    </div>
+</div>
+    <!-- Product 8 -->
+<div class="product-card">
+    <img src="ZERODOL.jpg" alt="Zerodol SP">
+    <div class="product-info">
+        <h3>Zerodol-SP</h3>
+        <p>Pain relief tablet for inflammation and muscle pain.</p>
+        <div class="price">Ask Price</div>
+        <a href="https://wa.me/91888850909?text=I%20want%20to%20order%20Zerodol%20SP" class="order-btn">Order Now</a>
+    </div>
+</div>
+   <!-- Product 9 -->
+<div class="product-card">
+    <img src="evion.jpg" alt="Evion 400">
+    <div class="product-info">
+        <h3>Evion 400</h3>
+        <p>Vitamin E capsules for skin, hair, and health support.</p>
+        <div class="price">Ask Price</div>
+        <a href="https://wa.me/91888850909?text=I%20want%20to%20order%20Evion%20400" class="order-btn">Order Now</a>
+    </div>
+</div>
+ <!-- Product 10 -->
+<div class="product-card">
+    <img src="MEFTAL.jpg" alt="MEFTAL">
+    <div class="product-info">
+        <h3>MEFTAL</h3>
+        <p>Vitamin E capsules for skin, hair, and health support.</p>
+        <div class="price">Ask Price</div>
+        <a href="https://wa.me/91888850909?text=I%20want%20to%20order%20Evion%20400" class="order-btn">Order Now</a>
+    </div>
+</div>
+<!-- Product 11 -->
+<div class="product-card">
+    <img src="ONDEM-MD 4.jpg" alt="ONDEM-MD 4">
+    <div class="product-info">
+        <h3>ONDEM-MD 4</h3>
+        <p>Vitamin E capsules for skin, hair, and health support.</p>
+        <div class="price">Ask Price</div>
+        <a href="https://wa.me/91888850909?text=I%20want%20to%20order%20Evion%20400" class="order-btn">Order Now</a>
+    </div>
+</div>
+<!-- Product 11 -->
+<div class="product-card">
+    <img src="livogen.jpg" alt="livogen">
+    <div class="product-info">
+        <h3>livogen</h3>
+        <p>Vitamin E capsules for skin, hair, and health support.</p>
+        <div class="price">Ask Price</div>
+        <a href="https://wa.me/91888850909?text=I%20want%20to%20order%20Evion%20400" class="order-btn">Order Now</a>
+    </div>
+</div>
+<!-- Product 12 -->
+<div class="product-card">
+    <img src="calpol 500.jpg" alt="calpol 500">
+    <div class="product-info">
+        <h3>calpol 500</h3>
+        <p>Vitamin E capsules for skin, hair, and health support.</p>
+        <div class="price">Ask Price</div>
+        <a href="https://wa.me/91888850909?text=I%20want%20to%20order%20Evion%20400" class="order-btn">Order Now</a>
+    </div>
+</div>
+</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Section -->
+    <section id="order" class="order-section">
+        <h2>Need Medicines Fast?</h2>
+        <p>Call or WhatsApp us to place your order directly!</p>
+        
+        <div style="margin: 30px 0;">
+            <p><strong>Option 1:</strong> Call us at <a href="tel:+91888850909" style="color: var(--primary-blue);">888850909</a></p>
+            <p><strong>Option 2:</strong> Send us a photo of your prescription on WhatsApp</p>
+        </div>
+
+        <a href="https://wa.me/91888850909?text=Hello,%20I%20would%20like%20to%20order%20medicines." class="whatsapp-btn" target="_blank">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c1.001.572 1.973.88 3.12.88 3.182 0 5.768-2.587 5.768-5.766.001-3.18-2.585-5.767-5.766-5.767zm0 10.
